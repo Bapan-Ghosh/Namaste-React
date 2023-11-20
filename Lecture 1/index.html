@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Html</title>
+</head>
+
+<body>
+
+
+    <!-- react is a library means we can use it in our existing project's small 
+         portion's also -->
+    <!-- like      -->
+    <h1>This will print and inside root will come from .js file that is a part of react</h1>
+
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script>
+        const heading = React.createElement("h1",{id:"heading"},"Cool bro"); // heading bascially a object
+        //const root = ReactDOM.createRoot(document.getElementById("root"));
+        //root.render(heading)  // and render is basically converting the obj to h1 tag and puting it into root
+    </script>
+
+    <!-- React.createElement :  this creates a js object
+         * the job of this render method is to  convert the object into browser understandable h1 tag and put it into the DOM
+    -->
+
+    <script src="App.js"></script>
+
+</body>
+
+</html>
