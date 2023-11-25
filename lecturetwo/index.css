@@ -1,0 +1,146 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1px;
+    box-shadow: 0 0 5px 0 gray;
+}
+
+.logo-container img{
+    width: 100px;
+}
+
+.nav-items ul{
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.header .nav-items ul li a:hover {
+    color: lightskyblue;
+  }
+
+.res-card {
+    width: 248px;
+    height: 380px;
+    border: 1px solid black;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 2px;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+
+.search {
+    margin-top: 10px;
+}
+
+.res-logo{
+    height: 60%;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.filter-btn{
+    margin-left: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 7px;
+    background-color: lightblue;
+    border: 1px solid lightcoral;
+    box-shadow: 0 0 2px 0 gray;
+}
+
+.login-btn{
+    cursor: pointer;
+    padding: 8px 15px;
+    background-color: lightblue;
+    border: 1px solid lightcoral;
+    box-shadow: 0 0 2px 0 gray;
+}
+
+.search-btn{
+    cursor: pointer;
+    padding: 7px;
+    background-color: lightblue;
+    border: 1px solid lightcoral;
+    box-shadow: 0 0 2px 0 gray;
+}
+
+input[type="text"]{
+    padding: 7px;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 80px 5px 5px 10px;
+}
+
+.shimmer-card{
+    width: 200px;
+    height: 400px;
+    background-color: #f0f0f0;
+}
+
+.filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menu{
+    width: 50%;
+    margin: 20px auto 0px;
+}
+
+.ul{
+    margin-top: 10px;
+}
+
+li{
+    margin-bottom: 5px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.right{
+    box-shadow: 0 0 4px 0 gray;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+}

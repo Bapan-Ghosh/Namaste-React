@@ -30,5 +30,9 @@ const parent = React.createElement("div",{id:"parent"},[
         ])
     ])
 
+    console.log(typeof parent);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(parent);
+
+// Here parent(react element is an object) and when we render the object it becomes HTML
