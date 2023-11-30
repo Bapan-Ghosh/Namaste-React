@@ -5,12 +5,14 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header =()=>{
     const [btnName,setBtnName] = useState("Login")
-    //this is a custom hooks
+    //this is a custom hooks // bascially we are calling useOnlineStatus()
+    // and getting the response and the end component is a js function nothing
+    // else
     const useOnlineStatu = useOnlineStatus();
     return (
-        <div className="flex justify-around w-full items-center shadow-lg bg-pink-100">
-            <div className='w-24'>
-                <img src={LOGO_URL} alt="deleted" />
+        <div className="flex h-16 justify-around w-full items-center shadow-lg bg-pink-50">
+            <div>
+                <img className='h-14 rounded-lg' src={LOGO_URL} alt="deleted" />
             </div>
             <div>
                 <ul className="flex gap-4">
