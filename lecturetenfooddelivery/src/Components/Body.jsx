@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{withPromotedLevel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { ColorRing } from  'react-loader-spinner';
 import Shimmer from "./Shimmerui";
@@ -7,8 +7,8 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import { BODY_API } from "../utils/constants";
 /* Whenever something updated in the useState function like anything updated 
    in setResList or setSearchText (state variables) everytime body component 
-   re-render (meaans :--refresh the body component) but only updating that DOM
-    part which is being updated*/
+   re-render (meaans :--refresh the body component) but only update that DOM
+   part which is being updated*/
 
 // mane react kono state variable change hole compare korte thake previous dom
 // with current changed dom and if it noticed any change it updates only that
@@ -21,6 +21,8 @@ const Body = ()=>{
     const [searchText, setSearchText] = useState("");
     const [filterdRestaurant, setFilterdRestaurant] = useState([]);
 
+    const RestaurantCardPromoted = withPromotedLevel(RestaurantCard);
+
     useEffect(()=>{
         fetchData();
     },[])
@@ -32,6 +34,7 @@ const Body = ()=>{
           console.log(json);  
 
           setResList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);       
+          console.log(restList);
           setFilterdRestaurant(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
     
@@ -67,9 +70,9 @@ const Body = ()=>{
       <Shimmer/> 
       ) :  (
        <div className="body">
-           <div className="filter">
+           <div className="flex justify-between m-5">
              <div className="search">
-                <input type="text" onChange={(e)=>{setSearchText(e.target.value)}} value={searchText}  className="search-box"/>
+                <input type="text" className="border border-solid border-sky-500 p-1 rounded-md" onChange={(e)=>{setSearchText(e.target.value)}} value={searchText}/>
                 <button onClick={()=>{
                     const filterRestaurants = restList.filter((res)=>{
                           return (
@@ -78,20 +81,25 @@ const Body = ()=>{
                           )
                     }); setFilterdRestaurant(filterRestaurants);  
                 }}  
-                className="search-btn">Search</button>
+                className="bg-blue-300 pt-1 pb-1 p-3 ml-1 hover:bg-blue-600  rounded-md">Search</button>
              </div>
-             <button className="filter-btn" onClick={()=>{
+             <button className="bg-blue-300 pt-1 mr-4 pb-1 p-3 hover:bg-blue-600  rounded-md" onClick={()=>{
                 const filterRestaurants = restList.filter((res,index)=>{
                 return res?.info?.avgRating >= 4.2
              });setFilterdRestaurant(filterRestaurants); }}>Top Rated Restaurant</button>
            </div>
-           <div className="res-container">
+           {filterdRestaurant?.length >0 ? (
+           <div className="flex flex-wrap  ml-2">
                {filterdRestaurant.map((res,index)=>{
                    return (
-                    <Link key={res?.info?.id} to={"/restaurants/"+res?.info?.id}> <RestaurantCard resData={res?.info}/></Link>
+                    <Link key={res?.info?.id} 
+                    to={"/restaurants/"+res?.info?.id}> 
+                    {res?.info?.avgRating >=4.2 ? <RestaurantCardPromoted resData={res?.info}/> : <RestaurantCard resData={res?.info}/>}
+                    
+                    </Link>
                    )
                })}
-           </div>
+           </div> ) :null}
        </div>
     )
 }
