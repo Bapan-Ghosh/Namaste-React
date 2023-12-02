@@ -1,17 +1,18 @@
 import { useState } from "react";
 import IteamList from "./IteamList";
 
-const RestaurantCategory = ({data}) =>{
-      const [showItems, setShowItems] = useState(true)
-      const [toggleSymbol,setToggleSymbol] = useState("🔼")
+const RestaurantCategory = ({data,showNotShow, setShowIndex}) =>{
+      // const [showItems, setShowItems] = useState(true)
+      const [toggleSymbol,setToggleSymbol] = useState("🔽")
       // console.log("From restcategory")
       // console.log(data);
 
-      //higerorder function call 
-      
+      // This is a lifting state up concept
+      //passing data from child to parents 
       
       const handleClick = ()=>{
-        showItems ? (setShowItems(false) || setToggleSymbol("🔽")) : (setShowItems(true) || setToggleSymbol("🔼"));
+        toggleSymbol === "🔽" ? setToggleSymbol("🔼") : setToggleSymbol("🔽")
+       setShowIndex();
       }
 
       return (
@@ -22,7 +23,7 @@ const RestaurantCategory = ({data}) =>{
                <span>{toggleSymbol}</span>
             </div>
             {/* Accordion Body */}
-             { showItems && <IteamList items={data.itemCards}/> }
+             { showNotShow && <IteamList items={data.itemCards}/> }
         </div>
       )
 }

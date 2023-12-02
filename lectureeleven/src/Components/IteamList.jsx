@@ -3,9 +3,11 @@ import NestedItemList from './NestedItemList';
 import { withBestSellerLevel } from './NestedItemList';
 
 const IteamList = ({items}) => {
-    // console.log("From items ")
-    // console.log(items);
+    console.log("From items ")
+    console.log(items);
     console.log(items[0].card?.info?.isBestseller);
+    
+    //This is the higher order function
     const BestSellerLevel = withBestSellerLevel(NestedItemList)
   return (
     <div>

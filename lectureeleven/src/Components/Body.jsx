@@ -32,15 +32,15 @@ const Body = ()=>{
     const fetchData = async ()=>{
           const data = await fetch(BODY_API);
           const json = await data.json();
-          console.log("1 :")
-          console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-          console.log("2 :")
-          console.log(json);  
+          // console.log("1 :")
+          // console.log(json);  
+          // console.log("2 :")
+          // console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
-          setResList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);       
-          console.log("why?")
-          console.log(restList);
-          setFilterdRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setResList(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);       
+          // console.log("why?")
+          // console.log(restList);
+          setFilterdRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
     
         //custome hooks
@@ -87,9 +87,9 @@ const Body = ()=>{
                 }}  
                 className="bg-blue-300 pt-1 pb-1 p-3 ml-1 hover:bg-blue-600  rounded-md">Search</button>
              </div>
-             <button className="bg-blue-300 pt-1 mr-4 pb-1 p-3 hover:bg-blue-600  rounded-md" onClick={()=>{
+             <button className="bg-blue-300 pt-1 pb-1 p-3 hover:bg-blue-600  rounded-md" onClick={()=>{
                 const filterRestaurants = restList.filter((res,index)=>{
-                return res?.info?.avgRating >= 4.2
+                return res?.info?.avgRating > 4.2
              });setFilterdRestaurant(filterRestaurants); }}>Top Rated Restaurant</button>
            </div>
            {filterdRestaurant?.length >0 ? (

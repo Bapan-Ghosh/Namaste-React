@@ -1,4 +1,4 @@
-import React,{lazy,Suspense} from 'react'
+import React,{lazy,Suspense, useEffect, useState} from 'react'
 import  ReactDOM  from 'react-dom/client';
 import '../index.css';
 import Header from './Components/Header';
@@ -9,6 +9,7 @@ import ContactUs from './Components/ContactUs';
 import Error from './Components/Error';
 import RestaurantMenu from './Components/RestaurantMenu';
 import Shimmer from './Components/Shimmerui';
+import UserContext from './utils/UseContext';
 
 //chunking
 //code splitting
@@ -50,12 +51,29 @@ const App = () => {
 }
 */
  // export default App
+//
 
+
+
+
+
+//
 const Grocery = lazy(()=> import("./Components/Grocery"));
 
 const AppLayout = ()=>{
+    // Now suppose we want to pass data to context api;
+    const [userName, setUserName] = useState();
+    useEffect(()=>{
+          // make an api call send username and password
+          const data = {
+            name : "Bapan Ghosh",
+          };
+          setUserName(data.name);
+    },[]) 
+
     return (
         <div>
+            <UserContext.Provider value={{loggedInUser:userName , setUserName}}>
             <Header/>   {/* because header is common in every page */}
             <Outlet/>  {/* The Outlet will be replaced by the child component based on the route.*/}
             {/* if path "/"  then Outlet will be replaced with <Body/>*/ }
@@ -63,6 +81,7 @@ const AppLayout = ()=>{
             {/* if path "/about" */}
             {/* <About /> */}
 
+        </UserContext.Provider>
         </div>
     )
 }

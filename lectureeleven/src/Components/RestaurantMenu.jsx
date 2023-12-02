@@ -4,35 +4,28 @@ import { useParams } from "react-router";
 // import { MENU_API } from "../utils/Constants";
 import useRestaurantMenu from '../utils/useRestrauntMenu';
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
+
+//Now we want to control the resta category components br restamenu 
 const RestaurantMenu = ()=>{
-    // const [resMenu, setResMenu] = useState(null);
+    const [showIndex,setShowIndex] = useState(null);
+    // console.log(showIndex);
     const {resId} =  useParams();
 
+    const toggle = (index)=>{
+        showIndex == index ? setShowIndex(null) : setShowIndex(index)
+    }
     // This is called custome hooks
     const resMenu =  useRestaurantMenu(resId);
-
-    // useEffect(()=>{
-    //       fetchMenu();
-    // },[])
-   
-    // const fetchMenu = async ()=>{
-    //       const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.7247556&lng=88.4789351&restaurantId=${resId}&catalog_qa=undefined&submitAction=ENTER`);
-    //       const json = await     ;
-    //       console.log(json);
-    //       setResMenu(json);
-    // }; 
-    /* earlier we were fetching data from here but after that now, we have created 
-       custome hook to seperate it  
-    */
 
     if(resMenu === null) return <Shimmer/>
     const {name,costForTwoMessage,cuisines,avgRatingString,totalRatingsString} = resMenu?.data?.cards[0]?.card?.card?.info; 
     
-   // const {itemCards} = resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card;
+//    const {itemCards} = resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card;
     const categories = resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=> c?.card?.card?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
-    // console.log("From categories");
-    // console.log(categories)
+    console.log("From categories mane [puro all category inside this there is another array]");
+    console.log(categories)
 
     return (
        <div className="mt-5 w-[50%] m-auto">
@@ -52,29 +45,18 @@ const RestaurantMenu = ()=>{
             <div className="flex flex-col">
                 {categories.map((category,index) =>{
                        return (
-                          <RestaurantCategory key={index} data={category?.card?.card}/>
+                          <RestaurantCategory key={index} 
+                          data={category?.card?.card}
+                          showNotShow = {index === showIndex ? true : false}
+//This is a lifting state up concept, When we  we call ()=>toggle(index)
+// function from the component ResCategory then we are basically setting 
+// index to  showIndex and as it's state is changing the component will 
+// rerender and when showIndex == index , then that accorian will expand
+                          setShowIndex = {()=>toggle(index)}
+                          />
                        )
                 })}
             </div>
-            {/* <br />
-            <h2 style={{textAlign:"center",textDecoration:"underLine"}}>Menu</h2>
-            <br />
-            <hr /> */}
-            {/* <ul className="ul">
-                {itemCards.map((item,index)=>{
-                    return(
-                        <div key={item.card.info.id}>
-                          <li >{item.card.info.category}</li>
-                          <li>{item.card.info.name}</li>
-                          <li>₹{item.card.info.price/100}</li>
-                          <br />
-                          <li>{item.card.info.description}</li>
-                          <hr />
-                        </div>
-                    )
-                })}
-                
-            </ul>  */}
        </div>
     )
 }
