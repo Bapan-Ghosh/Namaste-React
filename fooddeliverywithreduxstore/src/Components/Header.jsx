@@ -1,8 +1,8 @@
-import { useState,useContext } from "react";
+import { useState} from "react";
 import { LOGO_URL } from "../utils/Constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/useContext";
+import { IoCartOutline } from "react-icons/io5";
 
 const Header =()=>{
     const [btnName,setBtnName] = useState("Login")
@@ -10,10 +10,6 @@ const Header =()=>{
     // and getting the response and the end component is a js function nothing
     // else
     const useOnlineStatu = useOnlineStatus();
-
-
-    // to access the data from usecontext that we have declared
-    const {loggedInUser} = useContext(UserContext);
 
     return (
         <div className="flex h-16 justify-around w-full items-center shadow-lg bg-pink-50">
@@ -27,8 +23,7 @@ const Header =()=>{
                     <li className="hover:text-blue-600"><Link to={"/about"}>About us</Link></li>
                     <li className="hover:text-blue-600"><Link to={"/contact"}>Conatct us</Link></li>
                     <li className="hover:text-blue-600"><Link to={"/grocery"}>Grocery</Link></li>
-                    <li>Cart</li>
-                    <li>{loggedInUser}</li> 
+                    <li className="text-4xl"><IoCartOutline/></li>
                     <button onClick={()=>{
                           btnName === "Login" ? setBtnName("Log out") : setBtnName("Login")
                     }} 
