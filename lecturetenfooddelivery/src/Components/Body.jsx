@@ -33,14 +33,14 @@ const Body = ()=>{
           const data = await fetch(BODY_API);
           const json = await data.json();
           console.log("1 :")
-          console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          console.log(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
           console.log("2 :")
           console.log(json);  
 
-          setResList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);       
+          setResList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);       
           console.log("why?")
           console.log(restList);
-          setFilterdRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setFilterdRestaurant(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
     
         //custome hooks
@@ -71,9 +71,9 @@ const Body = ()=>{
         )
     } */ 
 
-    return (filterdRestaurant?.length === 0) ? (
+    return (filterdRestaurant?.length === 0) ? 
       <Shimmer/> 
-      ) :  (
+       :  (
        <div className="body">
            <div className="flex justify-between m-5 ml-9">
              <div className="search">
@@ -103,7 +103,7 @@ const Body = ()=>{
                     </Link>
                    )
                })}
-           </div> ) :null}
+           </div> ) :(<h1 className="text-center text-red-700">Restaurents are closed!</h1>)}
        </div>
     )
 }

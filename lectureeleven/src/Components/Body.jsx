@@ -32,14 +32,14 @@ const Body = ()=>{
     const fetchData = async ()=>{
           const data = await fetch(BODY_API);
           const json = await data.json();
-          // console.log("1 :")
-          // console.log(json);  
-          // console.log("2 :")
-          // console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          console.log("1 :")
+          console.log(json);  
+          console.log("2 :")
+          console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
           setResList(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);       
-          // console.log("why?")
-          // console.log(restList);
+          console.log("why?")
+          console.log(restList);
           setFilterdRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
     
@@ -84,7 +84,7 @@ const Body = ()=>{
                             res.info.name.toLowerCase().includes(searchText.toLowerCase()) || res.info.cuisines.includes(searchText)
                           )
                     }); setFilterdRestaurant(filterRestaurants);  
-                }}  
+                } }  
                 className="bg-blue-300 pt-1 pb-1 p-3 ml-1 hover:bg-blue-600  rounded-md">Search</button>
              </div>
              <button className="bg-blue-300 pt-1 pb-1 p-3 hover:bg-blue-600  rounded-md" onClick={()=>{

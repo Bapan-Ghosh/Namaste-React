@@ -10,7 +10,7 @@ import { useState } from "react";
 //Now we want to control the resta category components br restamenu 
 const RestaurantMenu = ()=>{
     const [showIndex,setShowIndex] = useState(null);
-    // console.log(showIndex);
+    console.log(showIndex);
     const {resId} =  useParams();
 
     const toggle = (index)=>{
@@ -19,7 +19,7 @@ const RestaurantMenu = ()=>{
     // This is called custome hooks
     const resMenu =  useRestaurantMenu(resId);
 
-    if(resMenu === null) return <Shimmer/>
+        if(resMenu === null) return <Shimmer/>
     const {name,costForTwoMessage,cuisines,avgRatingString,totalRatingsString} = resMenu?.data?.cards[0]?.card?.card?.info; 
     
 //    const {itemCards} = resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card;
@@ -48,7 +48,7 @@ const RestaurantMenu = ()=>{
                           <RestaurantCategory key={index} 
                           data={category?.card?.card}
                           showNotShow = {index === showIndex ? true : false}
-//This is a lifting state up concept, When we  we call ()=>toggle(index)
+// This is a lifting state up concept, When we  we call ()=>toggle(index)
 // function from the component ResCategory then we are basically setting 
 // index to  showIndex and as it's state is changing the component will 
 // rerender and when showIndex == index , then that accorian will expand

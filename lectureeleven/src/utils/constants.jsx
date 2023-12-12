@@ -8,4 +8,3 @@ const BODY_API = "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/
 export {LOGO_URL,CDN_URL,MENU_API,BODY_API}
 
 // This is called named export < when we export more than 2 variable > 
-

@@ -8,6 +8,7 @@ import About from './Components/About';
 import ContactUs from './Components/ContactUs';
 import Error from './Components/Error';
 import RestaurantMenu from './Components/RestaurantMenu';
+import Cart from './Components/Cart';
 import Shimmer from './Components/Shimmerui';
 import { Provider } from 'react-redux';
 import appStore from './Redux/appStore';
@@ -64,6 +65,8 @@ const Grocery = lazy(()=> import("./Components/Grocery"));
 const AppLayout = ()=>{
 
     return (
+        //provider is for the redux so that we can use the store throught
+        // all code
         <Provider store={appStore}>
         <div>
             <Header/>   {/* because header is common in every page */}
@@ -97,6 +100,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurants/:resId",
                 element: <RestaurantMenu />
+            },
+            {
+                path: "/cart",
+                element: <Cart />
             },
             {
                 path:"/grocery",

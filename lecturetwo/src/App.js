@@ -55,7 +55,7 @@ const Grocery = lazy(()=> import("./Components/Grocery"));
 
 const AppLayout = ()=>{
     return (
-        <div className="app">
+        <div>
             <Header/>   {/* because header is common in every page */}
             <Outlet/>  {/* The Outlet will be replaced by the child component based on the route.*/}
             {/* if path "/"  then Outlet will be replaced with <Body/>*/ }
